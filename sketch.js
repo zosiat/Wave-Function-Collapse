@@ -8,7 +8,7 @@ const DIM = 25;
 
 function preload() {
   const path = 'tiles/pixel roads';
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 12; i++) {
     tileImages[i] = loadImage(`${path}/${i}.png`);
   }
 
@@ -50,8 +50,10 @@ function setup() {
    tiles[7] = new Tile(tileImages[7], ['ACA', 'AAA', 'ACA', 'AAA']);
    tiles[8] = new Tile(tileImages[8], ['ACA', 'ACA', 'AAA', 'AAA']);
    //tiles 9 and 10 are the bridge tiles! they rotate but i wish they didnt
-   tiles[9] = new Tile(tileImages[9], ['ACA', 'ABA', 'ACA', 'ABA']);
-   //tiles[10] = new Tile(tileImages[10], ['ADA', 'AAA', 'ACA', 'AAA']);
+   tiles[9] = new Tile(tileImages[9], ['ACA', 'ABA', 'ADA', 'ABA']);
+   tiles[10] = new Tile(tileImages[10], ['ADA', 'AAA', 'ACA', 'AAA']);
+   //tree
+   tiles[11] = new Tile(tileImages[11], ['AAA', 'AAA', 'AAA', 'AAA']);
 
   // Loaded and created the tiles
   
@@ -71,18 +73,22 @@ function setup() {
   
 
   //change i < ? based on # of tiles
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 12; i++) {
     tiles[i].index = i;
   }
 
   const initialTileCount = tiles.length;
+  
   for (let i = 0; i < initialTileCount; i++) {
     let tempTiles = [];
-    for (let j = 0; j < 4; j++) {
-      tempTiles.push(tiles[i].rotate(j));
+    //exluding tiles i dont want rotated
+    if (i !== 9 && i !== 10 && i !== 11) {
+      for (let j = 0; j < 4; j++) {
+        tempTiles.push(tiles[i].rotate(j));
+      }
+      tempTiles = removeDuplicatedTiles(tempTiles);
+      tiles = tiles.concat(tempTiles);
     }
-    tempTiles = removeDuplicatedTiles(tempTiles);
-    tiles = tiles.concat(tempTiles);
   }
   console.log(tiles.length);
 
