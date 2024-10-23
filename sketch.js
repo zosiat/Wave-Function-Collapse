@@ -5,9 +5,10 @@ let grid = [];
 
 const DIM = 25;
 
+
 function preload() {
   const path = 'tiles/pixel roads';
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 10; i++) {
     tileImages[i] = loadImage(`${path}/${i}.png`);
   }
 
@@ -45,6 +46,12 @@ function setup() {
    tiles[4] = new Tile(tileImages[4], ['AAA', 'AAA', 'AAA', 'AAA']);
    tiles[5] = new Tile(tileImages[5], ['ABA', 'AAA', 'ABA', 'AAA']);
    tiles[6] = new Tile(tileImages[6], ['ABA', 'ABA', 'ABA', 'ABA']);
+   //river tiles have C now to distinguish from roads
+   tiles[7] = new Tile(tileImages[7], ['ACA', 'AAA', 'ACA', 'AAA']);
+   tiles[8] = new Tile(tileImages[8], ['ACA', 'ACA', 'AAA', 'AAA']);
+   //tiles 9 and 10 are the bridge tiles! they rotate but i wish they didnt
+   tiles[9] = new Tile(tileImages[9], ['ACA', 'ABA', 'ACA', 'ABA']);
+   //tiles[10] = new Tile(tileImages[10], ['ADA', 'AAA', 'ACA', 'AAA']);
 
   // Loaded and created the tiles
   
@@ -63,7 +70,8 @@ function setup() {
   // tiles[12] = new Tile(tileImages[12], ['BBB', 'BCB', 'BBB', 'BCB']);
   
 
-  for (let i = 0; i < 7; i++) {
+  //change i < ? based on # of tiles
+  for (let i = 0; i < 10; i++) {
     tiles[i].index = i;
   }
 
