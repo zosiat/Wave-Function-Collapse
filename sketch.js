@@ -82,7 +82,7 @@ function setup() {
   for (let i = 0; i < initialTileCount; i++) {
     let tempTiles = [];
     //exluding tiles i dont want rotated
-    if (i !== 9 && i !== 10 && i !== 11) {
+    if (i <= 9) {
       for (let j = 0; j < 4; j++) {
         tempTiles.push(tiles[i].rotate(j));
       }
